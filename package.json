@@ -14,7 +14,9 @@
     "vite": "^2.6.4"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "ipfs-http-client": "^53.0.1",
+    "svelte-routing": "^1.6.0",
     "web3.storage": "^3.3.3"
   }
 }

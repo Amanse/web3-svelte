@@ -1,5 +1,6 @@
 <script>
-  import FileOrFol from './FileOrFol.svelte'
+  import {Link} from 'svelte-routing'
+
   export let name
   export let cid
 
@@ -7,5 +8,5 @@
 </script>
 
 <main>
-  <a href={linkToFile}>{name}</a>
+  <Link to="cid/{cid}">{name}</Link>
 </main>

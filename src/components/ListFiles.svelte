@@ -18,6 +18,7 @@
   }
 
   onMount(() => {
+    FilesStore.update(() => [])
     listUploads()
   })
 </script>
