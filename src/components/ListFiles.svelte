@@ -28,6 +28,8 @@
     <p>loading...</p>
   {/if}
   {#each $FilesStore as file (file.cid)}
+  <div class="column">
     <SingleFile name={file.name} cid={file.cid} />
-  {/each}
+  </div>
+    {/each}
 </main>

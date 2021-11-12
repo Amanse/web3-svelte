@@ -30,20 +30,22 @@
 </script>
 
 <main>
-  <Link to="/">Go to home</Link>
+  <Link class="button is-info is-light box" to="/">Go to home</Link>
   {#if loading}
     loading...
   {/if}
   {#if !loading}
+  <div class="container">
     {#each $PerFileStore as file (file.Hash)}
       <p>
         {#if file.Type == 2}
         <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
         {/if}
         {#if file.Type==1}
-        <button on:click={handleFolder(file.Hash)}>{file.Name}</button>
+        <button class="button is-info" on:click={handleFolder(file.Hash)}>{file.Name}</button>
         {/if}
       </p>
     {/each}
+  </div>
   {/if}
 </main>

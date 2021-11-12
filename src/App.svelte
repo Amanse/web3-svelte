@@ -17,11 +17,22 @@
     <AddToken />
   {/if}
   {#if token != null}
+  <div class="box">
     <UploadForm />
+  </div>
+  <div class="container">
     <ListFiles />
+  </div>
   {/if}
 </Route>
 <Route path="/cid/:cid" let:params>
   <FileOrFol cid={params.cid} />
 </Route>
 </Router>
+
+
+<style>
+  .flex{
+    display: flex;
+  }
+</style>

@@ -28,8 +28,20 @@
 
 <main>
   <form id="uploadForm" on:submit|preventDefault={handleUpload}>
-    <input type="file" id="fileToUpload" />
-    <button type="submit" id="uploadButton">Upload </button>
+    <div class="file">
+      <label class="file-label">
+        <input class="file-input" id="fileToUpload" type="file" name="resume">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fas fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Choose a file…
+          </span>
+        </span>
+      </label>
+    </div>
+    <button class="button is-primary" type="submit" id="uploadButton">Upload </button>
   </form>
   <div id="cid">
   </div>
