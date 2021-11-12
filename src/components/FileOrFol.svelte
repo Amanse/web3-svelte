@@ -25,6 +25,7 @@
 </script>
 
 <main>
+  <Link to="/">Go to home</Link>
   {#if loading}
     loading...
   {/if}
@@ -35,7 +36,7 @@
         <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
         {/if}
         {#if file.Type==1}
-        <a href="{file.Hash}">{file.Name}</a>
+        <a href="/cid/{file.Hash}">{file.Name}</a>
         {/if}
       </p>
     {/each}
