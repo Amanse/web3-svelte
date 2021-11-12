@@ -16,6 +16,11 @@
     loading = false
   }
 
+  const handleFolder = (hash) => {
+    PerFileStore.update(() => [])
+    retriveFiles(hash)
+  }
+
   onMount(() => {
     retriveFiles(cid)
   })
@@ -36,7 +41,7 @@
         <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
         {/if}
         {#if file.Type==1}
-        <a href="/cid/{file.Hash}">{file.Name}</a>
+        <button on:click={handleFolder(file.Hash)}>{file.Name}</button>
         {/if}
       </p>
     {/each}
