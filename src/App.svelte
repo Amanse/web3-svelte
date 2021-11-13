@@ -33,11 +33,3 @@
 </Route>
 </Router>
 </main>
-
-<style>
-  main{
-    height: 100vh;
-    background-attachment: fixed;
-    background-color: whitesmoke;
-  }
-</style>
