@@ -2,7 +2,6 @@
   import {Web3Storage} from 'web3.storage'
   import {FilesStore} from '../stores'
 
-  let fileName = ""
   let token = localStorage.getItem("WEB3_TOKEN")
 
   async function handleUpload() {
@@ -30,16 +29,13 @@
     location.reload()
   }
 
-  const handleFileName = (e) => {
-    fileName = e.target.files[0].name
-  }
 </script>
 
 <main class="level">
   <form id="uploadForm" on:submit|preventDefault={handleUpload}>
     
-        <input class="file-input" id="fileToUpload" type="file" name="resume" on:change={handleFileName}>
-        <button class="button is-link" on:click={handleUpload}>Upload</button>
+        <input class="file-input" id="fileToUpload" type="file" name="resume">
+        <button class="button is-link" type="submit" on:click={handleUpload}>Upload</button>
 
   </form>
  
