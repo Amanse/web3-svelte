@@ -17,7 +17,7 @@
     <AddToken />
   {/if}
   {#if token != null}
-  <div class="box">
+  <div class="box is-flex is-justify-content-space-around is-align-content-space-between">
     <UploadForm />
   </div>
   <div class="container">
@@ -29,10 +29,3 @@
   <FileOrFol cid={params.cid} />
 </Route>
 </Router>
-
-
-<style>
-  .flex{
-    display: flex;
-  }
-</style>
