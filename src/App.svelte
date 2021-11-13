@@ -18,12 +18,8 @@
     <AddToken />
   {/if}
   {#if token != null}
-  <div class="hero is-primary is-flex is-justify-content-space-around is-align-content-space-between">
-    <div class="hero-body">
     <UploadForm />
-  </div>
-  </div>
-  <div class="container">
+  <div>
     <ListFiles />
   </div>
   {/if}

@@ -36,38 +36,16 @@
 </script>
 
 <main class="level">
-  <div class="level-left mr-4">
   <form id="uploadForm" on:submit|preventDefault={handleUpload}>
-    <div class="file is-warning has-name">
-      <label class="file-label">
+    
         <input class="file-input" id="fileToUpload" type="file" name="resume" on:change={handleFileName}>
-        <span class="file-cta">
-          <span class="file-icon">
-            <i class="fas fa-upload"></i>
-          </span>
-          <span class="file-label">
-            Choose a file…
-          </span> 
-        </span>
-        {#if fileName != ""}
-        <span class="file-name">
-          {fileName}
-        </span>
-        {/if}
-      </label>
-    </div>
+        <button class="button is-link" on:click={handleUpload}>Upload</button>
+
   </form>
-  <div class="level-item">
-    <button class="button is-link" on:click={handleUpload}>Upload</button>
-  </div>
-</div>
-<div class="level-right">
-  <div class="level-item">
+ 
+
     <button class="button is-danger is-light" on:click={handleLogout}>
-      <span class="icon">
-        <i class="fas fa-trash-alt"></i>
-      </span>
+      X
     </button>
-  </div>
-</div>
+
 </main>
