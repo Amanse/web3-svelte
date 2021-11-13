@@ -1,12 +1,15 @@
 <script>
   import {Link} from 'svelte-routing'
+  import {FileCidStore} from '../stores'
 
   export let name
   export let cid
 
-  const linkToFile = `https://${cid}.ipfs.dweb.link`
+  const setCidStore = () => {
+    FileCidStore.update(() => cid)
+  }
 </script>
 
 <main>
-  <Link to="cid/{cid}">{name}</Link>
+  <Link to="cid/" on:click={setCidStore}>{name}</Link>
 </main>

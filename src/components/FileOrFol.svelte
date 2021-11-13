@@ -1,10 +1,13 @@
 <script>
-  import {Link} from "svelte-routing"
-  import {PerFileStore} from '../stores'
+  import {Link, navigate} from "svelte-routing"
+  import {PerFileStore, FileCidStore} from '../stores'
   import axios from "axios"
   import {onMount, onDestroy} from 'svelte'
-  export let cid
+import { is_promise } from "svelte/internal";
 
+  let cid;
+
+  
   let loading = true
 
   async function retriveFiles(cid) {
@@ -22,6 +25,12 @@
   }
 
   onMount(() => {
+    FileCidStore.subscribe(value => {
+      if(value==""){
+        navigate("/", {replace:true})
+      }
+    cid = value
+    })
     retriveFiles(cid)
   })
   onDestroy(() => {
@@ -32,7 +41,9 @@
 <main>
   <Link class="button is-info is-light box" to="/">Go to home</Link>
   {#if loading}
+  <div class="container">
     loading...
+  </div>
   {/if}
   {#if !loading}
   <div class="container">
@@ -42,7 +53,10 @@
         <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
         {/if}
         {#if file.Type==1}
-        <button class="button is-info" on:click={handleFolder(file.Hash)}>{file.Name}</button>
+        <div class="is-flex ">
+          <button class="button is-info" on:click={handleFolder(file.Hash)}>{file.Name}</button>
+          <a href="https://{file.Hash}.ipfs.dweb.link/" class="mt-2">(view on ipfs)</a>
+        </div>
         {/if}
       </p>
     {/each}

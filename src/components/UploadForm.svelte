@@ -1,15 +1,15 @@
 <script>
-  import getToken from '../helpers/web3helpers.js';
   import {Web3Storage} from 'web3.storage'
   import {FilesStore} from '../stores'
 
   let fileName = ""
+  let token = localStorage.getItem("WEB3_TOKEN")
 
   async function handleUpload() {
     const fileSelect = document.getElementById("fileToUpload")
     // @ts-ignore
     const selectedFile = fileSelect.files[0]
-    const client = new Web3Storage({token:getToken()})
+    const client = new Web3Storage({token:token})
 
 
     const cid = await client.put([selectedFile], {
@@ -38,7 +38,7 @@
 <main class="level">
   <div class="level-left mr-4">
   <form id="uploadForm" on:submit|preventDefault={handleUpload}>
-    <div class="file has-name">
+    <div class="file is-warning has-name">
       <label class="file-label">
         <input class="file-input" id="fileToUpload" type="file" name="resume" on:change={handleFileName}>
         <span class="file-cta">
@@ -58,7 +58,7 @@
     </div>
   </form>
   <div class="level-item">
-    <button class="button is-primary" on:click={handleUpload}>Upload</button>
+    <button class="button is-link" on:click={handleUpload}>Upload</button>
   </div>
 </div>
 <div class="level-right">

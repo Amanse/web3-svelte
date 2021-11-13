@@ -11,21 +11,33 @@
 
 </script>
 
+<main>
 <Router url="{url}">
   <Route path="/">
   {#if token == null}
     <AddToken />
   {/if}
   {#if token != null}
-  <div class="box is-flex is-justify-content-space-around is-align-content-space-between">
+  <div class="hero is-primary is-flex is-justify-content-space-around is-align-content-space-between">
+    <div class="hero-body">
     <UploadForm />
+  </div>
   </div>
   <div class="container">
     <ListFiles />
   </div>
   {/if}
 </Route>
-<Route path="/cid/:cid" let:params>
-  <FileOrFol cid={params.cid} />
+<Route path="cid">
+  <FileOrFol />
 </Route>
 </Router>
+</main>
+
+<style>
+  main{
+    height: 100vh;
+    background-attachment: fixed;
+    background-color: whitesmoke;
+  }
+</style>
