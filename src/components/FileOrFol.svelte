@@ -3,7 +3,6 @@
   import { PerFileStore, FileCidStore } from "../stores";
   import axios from "axios";
   import { onMount, onDestroy } from "svelte";
-  import { is_promise } from "svelte/internal";
 
   let cid;
 

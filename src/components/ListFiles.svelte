@@ -6,6 +6,7 @@
 
   const token = localStorage.getItem("WEB3_TOKEN");
   let loading = true;
+  let pins = [];
 
   async function listUploads() {
     const client = new web3s({ token: token });
@@ -17,8 +18,34 @@
     loading = false;
   }
 
+  function getPins() {
+    if (localStorage.getItem("Pins") != null) {
+      pins = JSON.parse(localStorage.getItem("Pins"));
+    } else {
+      const defaultPin = [
+        {
+          name: "Lover Taylor",
+          cid: "bafybeihei3keuolzup6voozyzh34vbkfulmru5jilcwxcha2vgnwhivyna",
+        },
+      ];
+      localStorage.setItem("Pins", JSON.stringify(defaultPin));
+    }
+  }
+
+  function makePin(file) {
+    pins = [file, ...pins];
+    let pinsStr = JSON.stringify(pins);
+    localStorage.setItem("Pins", pinsStr);
+  }
+
+  function unpin(file) {
+    pins = pins.filter((pin) => pin.cid != file.cid);
+    localStorage.setItem("Pins", JSON.stringify(pins));
+  }
+
   onMount(() => {
     FilesStore.update(() => []);
+    getPins();
     listUploads();
   });
 </script>
@@ -27,9 +54,20 @@
   {#if loading}
     <p>loading...</p>
   {/if}
+  {#each pins as pin (pin.cid)}
+    <div class="container font-bold mx-auto flex">
+      <SingleFile name={pin.name} cid={pin.cid} />
+      <button on:click={unpin(pin)}>
+        <i class="fas fa-trash" />
+      </button>
+    </div>
+  {/each}
   {#each $FilesStore as file (file.cid)}
-    <div class="container mx-auto grid grid-flow-col auto-cols-max">
+    <div class="container mx-auto flex">
       <SingleFile name={file.name} cid={file.cid} />
+      <button class="text-thin px-2" on:click={makePin(file)}>
+        <i class="fas fa-solid fa-thumbtack" />
+      </button>
     </div>
   {/each}
 </main>
