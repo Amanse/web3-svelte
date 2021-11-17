@@ -49,7 +49,7 @@
     <div class="container mx-auto">loading...</div>
   {/if}
   {#if !loading}
-    <div class="container mx-auto dark:bg-black">
+    <div class="container mx-auto">
       {#each $PerFileStore as file (file.Hash)}
         <p>
           {#if file.Type == 2}

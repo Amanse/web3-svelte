@@ -50,9 +50,11 @@
   });
 </script>
 
-<main class="dark:text-white divide-y divide-green-300  divide-opacity-25">
+<main class="dark:text-white divide-y divide-green-300 py-2  divide-opacity-25">
   {#if loading}
-    <p>loading...</p>
+    <div class="container mx-auto">
+      <p>loading...</p>
+    </div>
   {/if}
   {#each pins as pin (pin.cid)}
     <div class="container  font-bold mx-auto flex">
@@ -62,6 +64,7 @@
       </button>
     </div>
   {/each}
+  <hr />
   {#each $FilesStore as file (file.cid)}
     <div class="container mx-auto flex">
       <SingleFile name={file.name} cid={file.cid} />

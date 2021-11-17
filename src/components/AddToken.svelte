@@ -10,7 +10,10 @@
 <form on:submit|preventDefault={handleSubmit} class="container mx-auto py-4">
   <!-- <input type="text" bind:value={token} placeholder="Insert token here!" /> -->
   <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="token">
+    <label
+      class="block dark:text-white text-gray-700 text-sm font-bold mb-2"
+      for="token"
+    >
       Token
     </label>
     <input

@@ -28,7 +28,7 @@
   };
 </script>
 
-<main class="flex dark:bg-gray-800 dark:text-white bg-yellow-300">
+<main class="flex dark:bg-gray-900 dark:text-white bg-yellow-300">
   <form
     id="uploadForm"
     class="flex-grow w-1/2 flex  place-content-center items-center "
