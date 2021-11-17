@@ -8,17 +8,18 @@
 
   let loading = true;
 
-  async function retriveFiles(cid) {
-    await axios
+  function retriveFiles(cid) {
+    axios
       .get(`https://dweb.link/api/v0/ls?arg=${cid}`)
       .then((res) => res.data)
       .then((data) => {
         PerFileStore.update(() => data["Objects"][0]["Links"]);
+        loading = false;
       });
-    loading = false;
   }
 
   const handleFolder = (hash) => {
+    loading = true;
     PerFileStore.update(() => []);
     retriveFiles(hash);
   };
@@ -37,7 +38,7 @@
   });
 </script>
 
-<main>
+<main class="dark:text-white">
   <div class="py-6 px-6 w-full flex flex-grow place-content-center container">
     <Link
       class="bg-white hover:bg-gray-100 w-full text-center text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow "
@@ -48,7 +49,7 @@
     <div class="container mx-auto">loading...</div>
   {/if}
   {#if !loading}
-    <div class="container mx-auto">
+    <div class="container mx-auto dark:bg-black">
       {#each $PerFileStore as file (file.Hash)}
         <p>
           {#if file.Type == 2}

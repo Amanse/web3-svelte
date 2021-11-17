@@ -50,12 +50,12 @@
   });
 </script>
 
-<main>
+<main class="dark:text-white divide-y divide-green-300  divide-opacity-25">
   {#if loading}
     <p>loading...</p>
   {/if}
   {#each pins as pin (pin.cid)}
-    <div class="container font-bold mx-auto flex">
+    <div class="container  font-bold mx-auto flex">
       <SingleFile name={pin.name} cid={pin.cid} />
       <button on:click={unpin(pin)}>
         <i class="fas fa-trash" />
