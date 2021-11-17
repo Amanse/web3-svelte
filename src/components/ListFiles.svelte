@@ -66,7 +66,9 @@
   {/each}
   <hr />
   {#each $FilesStore as file (file.cid)}
-    <div class="container mx-auto flex">
+    <div
+      class="container mx-auto w-screen overflow-hidden overflow-ellipsis flex-wrap flex"
+    >
       <SingleFile name={file.name} cid={file.cid} />
       <button class="text-thin px-2" on:click={makePin(file)}>
         <i class="fas fa-solid fa-thumbtack" />
