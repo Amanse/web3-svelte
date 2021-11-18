@@ -57,7 +57,7 @@
     </div>
   {/if}
   {#each pins as pin (pin.cid)}
-    <div class="container  font-bold mx-auto flex">
+    <div class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto">
       <SingleFile name={pin.name} cid={pin.cid} />
       <button on:click={unpin(pin)}>
         <i class="fas fa-trash" />
