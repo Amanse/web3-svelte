@@ -7,6 +7,7 @@
   let cid;
 
   let loading = true;
+  let prevHash = "";
 
   function retriveFiles(cid) {
     axios
@@ -20,9 +21,29 @@
 
   const handleFolder = (hash) => {
     loading = true;
+    prevHash = cid;
     PerFileStore.update(() => []);
     retriveFiles(hash);
   };
+
+  const handlePrev = () => {
+    loading = true;
+    PerFileStore.update(() => []);
+    retriveFiles(prevHash);
+    prevHash = "";
+  };
+
+  function formatBytes(bytes, decimals = 2) {
+    if (bytes === 0) return "0 Bytes";
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  }
 
   onMount(() => {
     FileCidStore.subscribe((value) => {
@@ -44,6 +65,12 @@
       class="bg-white hover:bg-gray-100 w-full text-center text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow "
       to="/">Go to home</Link
     >
+    {#if prevHash != ""}
+      <button
+        class="bg-white hover:bg-gray-100 w-full text-center text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow "
+        on:click={handlePrev}>Go Back</button
+      >
+    {/if}
   </div>
   {#if loading}
     <div class="container mx-auto">loading...</div>
@@ -54,6 +81,9 @@
         <p>
           {#if file.Type == 2}
             <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
+            <span class="font-thin font-mono py-1"
+              >({formatBytes(file.Size)})</span
+            >
           {/if}
           {#if file.Type == 1}
             <div class="is-flex ">
