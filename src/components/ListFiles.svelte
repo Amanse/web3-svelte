@@ -57,9 +57,11 @@
     </div>
   {/if}
   {#each pins as pin (pin.cid)}
-    <div class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto">
+    <div
+      class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto"
+    >
       <SingleFile name={pin.name} cid={pin.cid} />
-      <button on:click={unpin(pin)}>
+      <button class="mx-1 text-sm text-red-400" on:click={unpin(pin)}>
         <i class="fas fa-trash" />
       </button>
     </div>
@@ -70,7 +72,7 @@
       class="container mx-auto w-screen overflow-hidden overflow-ellipsis flex-wrap flex"
     >
       <SingleFile name={file.name} cid={file.cid} />
-      <button class="text-thin px-2" on:click={makePin(file)}>
+      <button class="text-sm text-green-400 mx-1" on:click={makePin(file)}>
         <i class="fas fa-solid fa-thumbtack" />
       </button>
     </div>

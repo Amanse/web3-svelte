@@ -8,8 +8,15 @@
   const setCidStore = () => {
     FileCidStore.update(() => cid);
   };
+
+  const copyCid = () => {
+    navigator.clipboard.writeText(cid);
+  };
 </script>
 
-<main class="text-wrap">
+<main class="text-wrap flex">
   <Link to="cid/" on:click={setCidStore}>{name}</Link>
+  <button class="mx-1 text-sm" on:click={copyCid}
+    ><i class="fas fa-copy" /></button
+  >
 </main>
