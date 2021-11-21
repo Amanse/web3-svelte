@@ -51,11 +51,6 @@
 </script>
 
 <main class="dark:text-white divide-y divide-green-300 py-2  divide-opacity-25">
-  {#if loading}
-    <div class="container mx-auto">
-      <p>loading...</p>
-    </div>
-  {/if}
   {#each pins as pin (pin.cid)}
     <div
       class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto"
@@ -67,6 +62,11 @@
     </div>
   {/each}
   <hr />
+  {#if loading}
+    <div class="container mx-auto">
+      <p>loading...</p>
+    </div>
+  {/if}
   {#each $FilesStore as file (file.cid)}
     <div
       class="container mx-auto w-screen overflow-hidden overflow-ellipsis flex-wrap flex"

@@ -5,6 +5,7 @@
   import { onMount, onDestroy } from "svelte";
 
   let cid;
+  let folderCid;
 
   let loading = true;
   let prevHash = "";
@@ -20,6 +21,7 @@
   }
 
   const handleFolder = (hash) => {
+    folderCid = hash;
     loading = true;
     prevHash = cid;
     PerFileStore.update(() => []);
@@ -51,6 +53,7 @@
         navigate("/", { replace: true });
       }
       cid = value;
+      folderCid = value;
     });
     retriveFiles(cid);
   });
@@ -80,7 +83,9 @@
       {#each $PerFileStore as file (file.Hash)}
         <p>
           {#if file.Type == 2}
-            <a href="https://{file.Hash}.ipfs.dweb.link/">{file.Name}</a>
+            <a href="https://{folderCid}.ipfs.dweb.link/{encodeURI(file.Name)}"
+              >{file.Name}</a
+            >
             <span class="font-thin font-mono py-1"
               >({formatBytes(file.Size)})</span
             >
