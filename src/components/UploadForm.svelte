@@ -24,6 +24,7 @@
 
   const handleLogout = () => {
     localStorage.removeItem("WEB3_TOKEN");
+    localStorage.removeItem("Pins");
     location.reload();
   };
 </script>
