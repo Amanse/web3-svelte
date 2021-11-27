@@ -26,6 +26,7 @@
         {
           name: "Lover Taylor",
           cid: "bafybeihei3keuolzup6voozyzh34vbkfulmru5jilcwxcha2vgnwhivyna",
+          token,
         },
       ];
       localStorage.setItem("Pins", JSON.stringify(defaultPin));
@@ -33,13 +34,14 @@
   }
 
   function makePin(file) {
+    file["token"] = token;
     pins = [file, ...pins];
     let pinsStr = JSON.stringify(pins);
     localStorage.setItem("Pins", pinsStr);
   }
 
   function unpin(file) {
-    pins = pins.filter((pin) => pin.cid != file.cid);
+    pins = pins.filter((pin) => pin.cid != file.cid && file.token == pin.token);
     localStorage.setItem("Pins", JSON.stringify(pins));
   }
 
@@ -52,14 +54,16 @@
 
 <main class="dark:text-white divide-y divide-green-300 py-2  divide-opacity-25">
   {#each pins as pin (pin.cid)}
-    <div
-      class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto"
-    >
-      <SingleFile name={pin.name} cid={pin.cid} />
-      <button class="mx-1 text-sm text-red-400" on:click={unpin(pin)}>
-        <i class="fas fa-trash" />
-      </button>
-    </div>
+    {#if pin.token == token}
+      <div
+        class="container  w-screen overflow-hidden overflow-ellipsis flex-wrap flex font-bold mx-auto"
+      >
+        <SingleFile name={pin.name} cid={pin.cid} />
+        <button class="mx-1 text-sm text-red-400" on:click={unpin(pin)}>
+          <i class="fas fa-trash" />
+        </button>
+      </div>
+    {/if}
   {/each}
   <hr />
   {#if loading}
