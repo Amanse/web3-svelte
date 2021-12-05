@@ -72,7 +72,8 @@
     bg-purple-500
     text-white
     ml-10
-    hover:bg-purple-700
+    hover:bg-white
+    hover:text-purple-400
     active:bg-purple-900
     font-bold
     uppercase
