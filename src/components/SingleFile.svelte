@@ -16,6 +16,7 @@
 
 <main class="text-wrap flex">
   <Link to="cid/" on:click={setCidStore}>{name}</Link>
+  <br />
   <button class="mx-1 text-sm" on:click={copyCid}
     ><i class="fas fa-copy" /></button
   >
